@@ -1,28 +1,40 @@
 import { useFormData } from "../../context";
 import { useState } from "react";
-import { Card } from "../Card.js"
 
 
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-export default function ContractInfo({ formStep, selected }) {
-  const { setFormValues } = useFormData();
-  const [isSelected, setisSelected] = useState();
-
+export default function ContractInfo() {
+  const { formStep, nextFormStep,  prevFormStep } = useFormData();
 
   const handleSubmit = (values) => {
     setFormValues(values);
     nextFormStep();
+    prevFormStep();
   };
 
-  const mode = selected ? 'border-red-300 border-8' : 'border-gray-400'
+  
 
   return (
     <div className={formStep === 0 ? 'block' : 'hidden'}>
-      <h2>Step1</h2>
-    </div>
+        <h1>STEP 1</h1>
+          <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-center">
+          <div className="rounded-md shadow">
+            <a role="button" tabIndex={0}
+              className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-200 hover:bg-gray-200 focus:outline-none md:py-4 md:text-lg md:px-10 cursor-not-allowed"
+            >
+              Back
+            </a>
+          </div>
+          <div className="mt-3 sm:mt-0 sm:ml-3">
+            <a
+              //onClick={nextQuizStep}
+              onClick={nextFormStep}
+              className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yallow-600 md:py-4 md:text-lg md:px-10"
+            >
+              Next
+            </a>
+          </div>
+        </div>
+      </div>
   );
 }

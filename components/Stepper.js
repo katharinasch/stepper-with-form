@@ -4,13 +4,15 @@ import { FormContext } from "../context";
 // status: 'complete', 'current', 'upcoming'
 
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Stepper() {
-const formData = useContext(FormContext);
-const steps = formData.steps
+  const { steps } = useContext(FormContext);
+// const formData = useContext(FormContext);
+// const steps = formData.steps
 
  
   return (
@@ -18,6 +20,7 @@ const steps = formData.steps
       <div className="flex items-center flex-col">
         <ol className="flex items-center sm:flex-col md:flex-row mx-auto mt-32 mb-8">
           {steps.map((step, stepIdx) => (
+
             <li key={step.name} className={classNames(stepIdx !== steps.length - 1 ? 'pr-16 sm:pr-32' : '', 'relative')}>
               {step.status === 'complete' ? (
                 <>
@@ -75,7 +78,10 @@ const steps = formData.steps
                 
               )}
             </li>
+            
+
           ))}
+          
         </ol>
         
       </div>
